@@ -2,12 +2,12 @@ import React,{useState} from 'react';
 import {Forma} from "./Forma";
 import {Content} from "./Content";
 import {Registration} from "./Registration"
-
+// import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 
 export const App=()=> {
-  const [login, setLogin] = useState(0);
-  const [password, setPassword] = useState(0);
-  //const [logged,setLogged]=useState(false);
+  // const [login, setLogin] = useState(0);
+  // const [password, setPassword] = useState(0);
+  // //const [logged,setLogged]=useState(false);
   const [signed,setSignIn]=useState(false);
   const [clicked,setClick]=useState(false);
   const [name,setName]=useState(0);
@@ -17,14 +17,16 @@ export const App=()=> {
 
   const[registrationPassword,setRegistrationPassword]=useState(0);
 
-  const generateLogin=(e)=>{
-    setLogin(e.target.value)
-  }
-  const generatePassword=(e)=>{
-    setPassword(e.target.value)
-  }
+  // const generateLogin=(e)=>{
+  //   setLogin(e.target.value)
+  // }
+  // const generatePassword=(e)=>{
+  //   setPassword(e.target.value)
+  // }
 
-
+const showContent=()=>{
+     return(<Content/>)
+}
 
   const sign=()=>{
     setSignIn(true)
@@ -49,7 +51,7 @@ export const App=()=> {
   const generateClick=()=>{
     setClick(true)
   }
-  const register=(e)=>{
+  const register=()=>{
     setSignIn(false)
 
 
@@ -57,31 +59,28 @@ export const App=()=> {
       FirstName:name,
       LastName:surname,
       Age:years,
-      email:mail,
+        pochta:mail,
       Password:registrationPassword
     }
     let serialObj=JSON.stringify(obj);
-    localStorage.setItem(obj.email,serialObj);
+    localStorage.setItem(obj.pochta,serialObj);
 
 
 
   }
-const generatePet=()=>{
 
-}
 
 
   return (
 
-      <div>
-        <div>   {!signed?<Registration firstName={generateFirstName} registrationPassword={generateRegistrationPassword} lastName={generateLastName} age={generateAge} Email={generateEmail} handleSignIn={sign} handleRegister={register}/>:<Forma  handleChangeLogin={generateLogin} handleChangePassword={generatePassword} handleClick={generateClick}/>}
-        </div>
-        <div>{
-          clicked && JSON.parse(localStorage.getItem(login)).email === login && JSON.parse(localStorage.getItem(login)).Password === password &&
-          <Content handleAdd={generatePet}/>
-        }
-        </div>
-      </div>
+
+          <div>
+
+           {!signed?<Registration firstName={generateFirstName} registrationPassword={generateRegistrationPassword} lastName={generateLastName} age={generateAge} Email={generateEmail} handleSignIn={sign} handleRegister={register}/>:<Forma />}
+
+          </div>
+
+
 
 
   )
