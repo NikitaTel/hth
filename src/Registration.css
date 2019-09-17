@@ -1,0 +1,11 @@
+.registration_container{
+    width:25%;
+}
+.registration_buttons{
+
+    display:flex;
+
+    justify-content: space-between;
+
+
+}
